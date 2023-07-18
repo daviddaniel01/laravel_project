@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Course;
 
+use App\Models\Course;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +28,7 @@ class StoreRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                'unique:App\Models\Course,name',
+                Rule::unique(Course::class)->ignore($this->course)
             ]
         ];
     }

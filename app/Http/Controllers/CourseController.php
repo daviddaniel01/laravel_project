@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Course\DestroyRequest;
 use App\Http\Requests\Course\StoreRequest;
+use App\Http\Requests\Course\UpdateRequest;
 use App\Models\Course;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -39,9 +41,8 @@ class CourseController extends Controller
 
     public function store(StoreRequest $request)
     {
-        $object = new Course();
-        $object->fill($request->all());
-        $object->save();
+        Course::create($request->validate());
+        return redirect()->route('courese.index');
     }
 
     public function edit(Course $course)
@@ -50,7 +51,7 @@ class CourseController extends Controller
     }
 
 
-    public function update(Request $request, $courseId)
+    public function update(UpdateRequest $request, $courseId)
     {
         //$this->model->where('id', $courseID)->update($request->validated());
         //$this->model->update($request->validated());
@@ -59,6 +60,13 @@ class CourseController extends Controller
         $object->fill($request->validated());
         $object->save();
 
+        return redirect()->route('courses.index');
+    }
+
+    public function destroy(DestroyRequest $request, $course)
+    {
+        // $course->delete();
+        Course::destroy($course);
         return redirect()->route('courses.index');
     }
 }
