@@ -1,9 +1,10 @@
-@extends('layout.master');
+@extends('layout.master')
 @section('content')
     <form action="{{ route('students.store') }}" method="post">
         @csrf
+        @method('PUT')
         Name
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{ $each->name }}">
         @if ($errors->has('name'))
             <span class="error">
                 {{ $errors->first('name') }}
@@ -11,15 +12,16 @@
         @endif
         <br>
         Email
-        <input type="text" name="email">
+        <input type="text" name="email" value="{{ $each->email }}">
         @if ($errors->has('email'))
             <span class="error">
                 {{ $errors->first('email') }}
             </span>
         @endif
         <br>
+
         Password
-        <input type="password" name="password">
+        <input type="password" name="password" value="{{ $each->password }}"">
         @if ($errors->has('password'))
             <span class="error">
                 {{ $errors->first('password') }}
@@ -27,7 +29,7 @@
         @endif
         <br>
         Birthdate
-        <input type="date" name="birthdate">
+        <input type="date" name="birthdate" value="{{ $each->birthdate }}">
         @if ($errors->has('birthdate'))
             <span class="error">
                 {{ $errors->first('birthdate') }}
@@ -35,8 +37,8 @@
         @endif
         <br>
         Gender
-        <input type="radio" name="gender" value="0" checked>Nam
-        <input type="radio" name="gender" value="1">Nữ
+        <input type="radio" name="gender" value="0" {{ $each->gender == 0 ? 'checked' : '' }}>Nam
+        <input type="radio" name="gender" value="1" {{ $each->gender == 1 ? 'checked' : '' }}>Nữ
         @if ($errors->has('gender'))
             <span class="error">
                 {{ $errors->first('gender') }}
@@ -44,7 +46,7 @@
         @endif
         <br>
         Avatar
-        <input type="file" name="avatar">
+        <input type="file" name="avatar" value="{{ $each->avatar }}">
         @if ($errors->has('avatar'))
             <span class="error">
                 {{ $errors->first('avatar') }}
@@ -54,7 +56,8 @@
         Course
         <select name="course_id">
             @foreach ($courses as $course)
-                <option value="{{ $course->id }}">{{ $course->name }}</option>
+                <option value="{{ $course->id }}" {{ $course->id == $each->course_id ? 'selected' : '' }}>
+                    {{ $course->name }}</option>
             @endforeach
         </select>
         @if ($errors->has('course_id'))
@@ -65,16 +68,19 @@
         <br>
         Status
         <br>
+
+
         @foreach ($arrStudentStatus as $option => $value)
             <input type="radio" name="status" value="{{ $value }}"
-                @if ($loop->first) checked @endif>{{ $option }}
+                @if ($each->status == $option) checked @endif>{{ $option }}
         @endforeach
+
         @if ($errors->has('status'))
             <span class="error">
                 {{ $errors->first('status') }}
             </span>
         @endif
         <br>
-        <button>Create</button>
+        <button>Update</button>
     </form>
 @endsection

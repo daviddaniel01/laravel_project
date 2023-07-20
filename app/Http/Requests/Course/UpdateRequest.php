@@ -38,7 +38,7 @@ class UpdateRequest extends FormRequest
         return [
             'required' => ':attribute bắt buộc phải điền',
             'string' => ':attribute bắt buộc là chữ',
-            'unique' => ':attribute bắt buộc đã tồn tại',
+            'unique' => ':attribute đã tồn tại',
         ];
     }
 

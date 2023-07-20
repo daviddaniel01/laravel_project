@@ -12,7 +12,16 @@
                 <td>{{ $each->id }}</td>
                 <td>{{ $each->name }}</td>
                 <td>
-                    <a href="{{ route('courses.edit', $each) }}">Edit</a>
+                    <div class="d-flex">
+                        <a class="btn btn-primary" href="{{ route('courses.edit', $each) }}">
+                            Edit
+                        </a>
+                        <form action="{{ route('courses.destroy', $each) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
                 </td>
             </tr>
         @endforeach

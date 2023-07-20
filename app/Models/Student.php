@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\StudentStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +21,7 @@ class Student extends Model
         'status',
     ];
 
-    public function getGenderAttribute(): string
+    public function getGenderNameAttribute(): string
     {
         return ($this->attributes['gender'] === 0) ? 'Nam' : 'Nữ';
     }
@@ -28,5 +29,10 @@ class Student extends Model
     public function getAgeAttribute(): int
     {
         return date_diff(date_create($this->attributes['birthdate']), date_create('now'))->y;
+    }
+
+    public function getStatusAttribute(): string
+    {
+        return StudentStatusEnum::getKeyByValue($this->attributes['status']);
     }
 }

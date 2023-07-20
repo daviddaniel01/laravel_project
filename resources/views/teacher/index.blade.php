@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('content')
-    <a href="{{ route('students.create') }}">Thêm</a>
+    <a href="{{ route('teachers.create') }}">Thêm</a>
     <table class="table table-striped">
         <tr>
             <th>#</th>
@@ -21,10 +21,10 @@
                 <td>{{ $each->status }}</td>
                 <td>
                     <div class="d-flex">
-                        <a class="btn btn-primary" href="{{ route('students.edit', $each) }}">
+                        <a class="btn btn-primary" href="{{ route('teachers.edit', $each) }}">
                             Edit
                         </a>
-                        <form action="{{ route('students.destroy', $each) }}" method="post">
+                        <form action="{{ route('teachers.destroy', $each) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger">Delete</button>

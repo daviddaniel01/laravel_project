@@ -1,6 +1,6 @@
 @extends('layout.master');
 @section('content')
-    <form action="{{ route('students.store') }}" method="post">
+    <form action="{{ route('teachers.store') }}" method="post">
         @csrf
         Name
         <input type="text" name="name">
@@ -65,7 +65,7 @@
         <br>
         Status
         <br>
-        @foreach ($arrStudentStatus as $option => $value)
+        @foreach ($arrTeacherStatus as $option => $value)
             <input type="radio" name="status" value="{{ $value }}"
                 @if ($loop->first) checked @endif>{{ $option }}
         @endforeach

@@ -25,8 +25,8 @@ final class StudentStatusEnum extends Enum
             'Bảo lưu' => self::BAO_LUU,
         ];
     }
-    // public static function getKeyByValue($value): string
-    // {
-    //     return array_search($value, self::getArrayView(), true);
-    // }
+    public static function getKeyByValue($value): string
+    {
+        return array_search($value, self::getArrayView(), true);
+    }
 }

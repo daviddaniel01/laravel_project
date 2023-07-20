@@ -18,11 +18,14 @@ class CourseController extends Controller
     public function __construct()
     {
         $this->model = (new Course())->query();
-        $routeName = Route::currentRouteName();
-        $arr = explode('.', $routeName); // tách chuỗi
-        $arr = array_map('ucfirst', $arr); // viết hoa chữ cái đầu
-        $title = implode(' - ', $arr); //nối mảng
-        View::share('title', $title);
+
+
+
+        //$routeName = Route::currentRouteName();
+        // $arr = explode('.', $routeName); // tách chuỗi
+        // $arr = array_map('ucfirst', $arr); // viết hoa chữ cái đầu
+        // $title = implode(' - ', $arr); //nối mảng
+        // View::share('title', $title);
     }
 
 
@@ -41,7 +44,7 @@ class CourseController extends Controller
 
     public function store(StoreRequest $request)
     {
-        Course::create($request->validate());
+        Course::create($request->validated());
         return redirect()->route('courese.index');
     }
 

@@ -1,9 +1,9 @@
-@extends('layout.master');
+@extends('layout.master')
 @section('content')
-    <form action="{{ route('course.store') }}" value="{{ old('name') }}" method="post">
+    <form action="{{ route('courses.store') }}" method="post">
         @csrf
         Name
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{ old('name') }}">
         @if ($errors->has('name'))
             <span class="error">
                 {{ $errors->first('name') }}
