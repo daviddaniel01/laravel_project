@@ -16,7 +16,6 @@ class Student extends Model
         'email',
         'password',
         'avatar',
-        'course_id',
         'birthdate',
         'status',
     ];
@@ -35,4 +34,5 @@ class Student extends Model
     {
         return StudentStatusEnum::getKeyByValue($this->attributes['status']);
     }
+
 }

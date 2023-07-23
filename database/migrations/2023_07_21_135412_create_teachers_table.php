@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('teachers', function (Blueprint $table) {
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
@@ -19,8 +19,7 @@ return new class extends Migration
             $table->boolean('gender');
             $table->date('birthdate');
             $table->string('avatar')->nullable();
-            $table->foreignId('course_id')->constrained('courses', 'id');
-            $table->smallInteger('status')->comment('StudentStatusEnum')->index();
+            $table->smallInteger('status')->comment('TeacherStatusEnum')->index();
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('teachers');
     }
 };

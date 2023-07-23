@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Course;
 
+use App\Models\Teacher;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -26,7 +28,11 @@ class StoreRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                'unique:App\Models\Course,name',
+            ],
+            'teacher_id' => [
+                'bail',
+                'required',
+                Rule::exists(Teacher::class, 'id'),
             ]
         ];
     }

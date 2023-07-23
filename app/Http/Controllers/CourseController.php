@@ -6,6 +6,7 @@ use App\Http\Requests\Course\DestroyRequest;
 use App\Http\Requests\Course\StoreRequest;
 use App\Http\Requests\Course\UpdateRequest;
 use App\Models\Course;
+use App\Models\Teacher;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -39,13 +40,16 @@ class CourseController extends Controller
 
     public function create()
     {
-        return view('course.create');
+        $teachers = Teacher::get();
+        return view('course.create', [
+            'teachers' => $teachers,
+        ]);
     }
 
     public function store(StoreRequest $request)
     {
         Course::create($request->validated());
-        return redirect()->route('courese.index');
+        return redirect()->route('courses.index');
     }
 
     public function edit(Course $course)

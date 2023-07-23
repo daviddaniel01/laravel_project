@@ -17,17 +17,25 @@
 
 <body>
 
-    {{-- <div class="container">
-        @include('layout.header')
-    </div> --}}
-
     <div>
-        @yield('content')
+        <div class="row">
+            @include('layout.sidebar')
+
+            <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                @yield('content')
+            </div>
+        </div>
     </div>
+
 
     {{-- @include('layout.footer') --}}
 
+
+
+
+
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 </body>
+
 
 </html>

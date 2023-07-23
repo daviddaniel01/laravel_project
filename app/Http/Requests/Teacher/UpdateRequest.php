@@ -69,12 +69,6 @@ class UpdateRequest extends FormRequest
                 'image',
                 Rule::unique(Teacher::class)->ignore($this->teacher),
             ],
-            'course_id' => [
-                'bail',
-                'required',
-                Rule::exists(Course::class, 'id'),
-                Rule::unique(Teacher::class)->ignore($this->teacher),
-            ],
         ];
     }
 
@@ -100,7 +94,6 @@ class UpdateRequest extends FormRequest
             'password' => 'Mật khẩu',
             'status' => 'Trạng thái',
             'avatar' => 'Ảnh',
-            'course_id' => 'Lớp học',
         ];
     }
 }

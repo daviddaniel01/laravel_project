@@ -59,11 +59,6 @@ class StoreRequest extends FormRequest
                 'bail',
                 'nullable',
             ],
-            'course_id' => [
-                'bail',
-                'required',
-                Rule::exists(Course::class, 'id'),
-            ],
         ];
     }
 
@@ -88,7 +83,6 @@ class StoreRequest extends FormRequest
             'password' => 'Mật khẩu',
             'status' => 'Trạng thái',
             'avatar' => 'Ảnh',
-            'course_id' => 'Lớp học',
         ];
     }
 }

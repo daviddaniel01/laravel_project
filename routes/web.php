@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,25 +19,28 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/students', [StudentController::class, 'index'])->name('student.index');
-// Route::get('/students/add', [StudentController::class, 'create'])->name('student.create');
-// Route::post('/students/add', [StudentController::class, 'store'])->name('student.store');
+
+
+Route::group([
+    'middleware' => Chec
+], function () {
 
 
 
-// Route::get('/courses', [CourseController::class, 'index'])->name('course.index');
-// Route::get('/courses/add', [CourseController::class, 'create'])->name('course.create');
-// Route::post('/courses/add', [CourseController::class, 'store'])->name('course.store');
-// Route::put('/courses/edit/{id}', [CourseController::class, 'edit'])->name('course.edit');
+    Route::get('/', [Controller::class, 'index'])->name('home');
+    Route::resource('courses', CourseController::class)->except([
+        'show',
+    ]);
 
-Route::resource('courses', CourseController::class)->except([
-    'show',
-]);
+    Route::resource('students', StudentController::class)->except([
+        'show',
+    ]);
 
-Route::resource('students', StudentController::class)->except([
-    'show',
-]);
+    Route::resource('teachers', TeacherController::class)->except([
+        'show',
+    ]);
 
-Route::resource('teachers', TeacherController::class)->except([
-    'show',
-]);
+    Route::resource('semesters', SemesterController::class)->except([
+        'show',
+    ]);
+});

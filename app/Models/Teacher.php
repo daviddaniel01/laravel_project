@@ -16,7 +16,6 @@ class Teacher extends Model
         'email',
         'password',
         'avatar',
-        'course_id',
         'birthdate',
         'status',
     ];

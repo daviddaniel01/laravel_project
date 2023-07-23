@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Course;
+namespace App\Http\Requests\Semester;
 
 use App\Models\Course;
-use App\Models\Teacher;
+use App\Models\Semesters;
+use App\Models\Student;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -14,7 +15,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -29,13 +30,19 @@ class UpdateRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                Rule::unique(Course::class)->ignore($this->course)
+                Rule::unique(Semester::class)->ignore($this->semester)
             ],
-            'teacher_id' => [
+            'course_id' => [
                 'bail',
                 'required',
-                Rule::unique(Course::class)->ignore($this->course),
-                Rule::exists(Teacher::class, 'id'),
+                Rule::unique(Semesters::class)->ignore($this->semester),
+                Rule::exists(Course::class, 'id'),
+            ],
+            'student_id' => [
+                'bail',
+                'required',
+                Rule::unique(Semesters::class)->ignore($this->semester),
+                Rule::exists(Student::class, 'id'),
             ]
         ];
     }

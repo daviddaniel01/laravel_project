@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Course;
+namespace App\Http\Requests\Semester;
 
 use App\Models\Course;
-use App\Models\Teacher;
+use App\Models\Student;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,13 +29,16 @@ class UpdateRequest extends FormRequest
                 'bail',
                 'required',
                 'string',
-                Rule::unique(Course::class)->ignore($this->course)
             ],
-            'teacher_id' => [
+            'course_id' => [
                 'bail',
                 'required',
-                Rule::unique(Course::class)->ignore($this->course),
-                Rule::exists(Teacher::class, 'id'),
+                Rule::exists(Course::class, 'id'),
+            ],
+            'student_id' => [
+                'bail',
+                'required',
+                Rule::exists(Student::class, 'id'),
             ]
         ];
     }

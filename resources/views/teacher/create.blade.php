@@ -51,18 +51,6 @@
             </span>
         @endif
         <br>
-        Course
-        <select name="course_id">
-            @foreach ($courses as $course)
-                <option value="{{ $course->id }}">{{ $course->name }}</option>
-            @endforeach
-        </select>
-        @if ($errors->has('course_id'))
-            <span class="error">
-                {{ $errors->first('course_id') }}
-            </span>
-        @endif
-        <br>
         Status
         <br>
         @foreach ($arrTeacherStatus as $option => $value)
